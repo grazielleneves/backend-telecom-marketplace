@@ -1,0 +1,29 @@
+{
+    "name": "your_project_name",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/your_username/your_project.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/your_username/your_project/issues"
+    },
+    "homepage": "https://github.com/your_username/your_project#readme",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "pg": "^8.5.1"
+    },
+    "devDependencies": {
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3"
+    }
+}

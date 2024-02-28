@@ -25,7 +25,7 @@ app.post('/register', async (req: Request<{}, {}, RegisterRequestBody>, res: Res
 
     // Inserir usuário no banco de dados
     const newUser = await pool.query(
-      'INSERT INTO users (username, email, password, user_type) VALUES ($1, $2, $3, $4) RETURNING id, username, email, user_type',
+      'INSERT INTO users (username, email, password, userType) VALUES ($1, $2, $3, $4) RETURNING id, username, email, user_type',
       [username, email, hashedPassword, userType]
     );
 
