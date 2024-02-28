@@ -1,13 +1,13 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, Router } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Pool } from 'pg';
 
-// Assumindo que você já configurou seu pool de conexões do PostgreSQL em outro arquivo
 import pool from './database';
 
 const app = express();
 app.use(express.json());
+const router = Router();
 
 interface LoginRequestBody {
   email: string;
@@ -45,7 +45,9 @@ app.post('/login', async (req: Request<{}, {}, LoginRequestBody>, res: Response)
   }
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+export default router;

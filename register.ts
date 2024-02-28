@@ -1,9 +1,10 @@
 import express, { Request, Response, Router } from 'express';
 import bcrypt from 'bcrypt';
 import pool from './database';
+import jwt, { SignOptions } from 'jsonwebtoken';
 
-const app = express();
-app.use(express.json());
+//const app = express();
+//app.use(express.json());
 const router = Router();
 
 type UserType = 'client' | 'service-provider' | 'asset-provider';
@@ -15,7 +16,7 @@ interface RegisterRequestBody {
   userType: UserType;
 }
 
-app.post('/register', async (req: Request<{}, {}, RegisterRequestBody>, res: Response) => {
+router.post('/register', async (req: Request<{}, {}, RegisterRequestBody>, res: Response) => {
   try {
     const { username, email, password, userType } = req.body;
 
@@ -28,6 +29,16 @@ app.post('/register', async (req: Request<{}, {}, RegisterRequestBody>, res: Res
       'INSERT INTO users (username, email, password, userType) VALUES ($1, $2, $3, $4) RETURNING id, username, email, user_type',
       [username, email, hashedPassword, userType]
     );
+
+    // Gera um token JWT
+    const token = jwt.sign(
+      { id: newUser.rows[0].id, nome: newUser.rows[0].nome, email: newUser.rows[0].email },
+      process.env.JWT_SECRET as string,
+      { expiresIn: '1h' } // ou qualquer outro tempo que você considerar adequado
+    );
+
+  // Envia o token como resposta
+  res.json({ user: newUser.rows[0], token });
 
     // Responder com o usuário recém-criado
     res.status(201).json(newUser.rows[0]);

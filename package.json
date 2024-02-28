@@ -18,11 +18,16 @@
     "homepage": "https://github.com/your_username/your_project#readme",
     "dependencies": {
         "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
         "express": "^4.17.1",
         "jsonwebtoken": "^8.5.1",
         "pg": "^8.5.1"
     },
     "devDependencies": {
+        "@types/cors": "^2.8.17",
+        "@types/dotenv": "^8.2.0",
+        "@types/node": "^20.11.21",
         "ts-node": "^10.9.2",
         "typescript": "^5.3.3"
     }
