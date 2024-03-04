@@ -1,8 +1,7 @@
 import express, { Request, Response, Router } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { Pool } from 'pg';
-
+//import { Pool } from 'pg';
 import pool from './database';
 
 const app = express();
@@ -43,11 +42,6 @@ app.post('/login', async (req: Request<{}, {}, LoginRequestBody>, res: Response)
     console.error(err);
     res.status(500).send('Erro no servidor.');
   }
-});
-
-const PORT = process.env.PORT || 3003;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
 });
 
 export default router;

@@ -32,9 +32,9 @@ router.post('/register', async (req: Request<{}, {}, RegisterRequestBody>, res: 
 
     // Gera um token JWT
     const token = jwt.sign(
-      { id: newUser.rows[0].id, nome: newUser.rows[0].nome, email: newUser.rows[0].email },
+      { id: newUser.rows[0].id, username, email },
       process.env.JWT_SECRET as string,
-      { expiresIn: '1h' } // ou qualquer outro tempo que você considerar adequado
+      { expiresIn: '1h' }
     );
 
   // Envia o token como resposta
